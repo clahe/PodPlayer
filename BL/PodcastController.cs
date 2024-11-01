@@ -48,6 +48,18 @@ namespace BL
             }
         }
 
+        public void UpdatePodcast(int podcastId, string nyKategori)
+        {
+            var podcast = poddLista.FirstOrDefault(p => p.Id == podcastId.ToString());
+            if (podcast != null)
+            {
+                podcast.Kategori = nyKategori;
+                podcastRepository.Update(podcast);
+                SavePodcast(poddLista);
+            }
+        }
+
+
         public void DeletePodcast(Podcast theObject)
         {
             podcastRepository.Delete(theObject);

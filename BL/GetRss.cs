@@ -28,10 +28,10 @@ public class GetRss
                     Rubrik = poddNamn,
                     RssUrl = rssUrl,
                     Beskrivning = beskrivning,
-                    /*avsnittLista = new List<Avsnitt>()*/ // Initiera lista för avsnitt
+               
                 };
 
-                // Lägg till avsnitt från RSS-flödet
+              
                 foreach (var item in feed.Items)
                 {
                     podcast.avsnittLista.Add(new Avsnitt
