@@ -48,16 +48,6 @@ namespace DAL
 
         }
 
-        //public void SparaAvsnittLista(List<Avsnitt> theObject)
-        //{
-        //    serializer.SerializeAvsnitt(avsnittLita);
-        //}
-
-        //public void HamtaAvsnitt(List<Avsnitt> theObject)
-        //{
-        //    serializer.DeserializeAvsnitt();
-        //}
-
         public void SparaData(List<Podcast> theObject)
         {
             serializer.SerializePodcasts(poddLista);

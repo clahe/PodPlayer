@@ -25,7 +25,7 @@ namespace DAL
 
         public List<T> Deserialize<T>(string filePath)
         {
-            if (!File.Exists(filePath)) return new List<T>(); // Skapa tom lista om fil saknas
+            if (!File.Exists(filePath)) return new List<T>(); 
 
             XmlSerializer serializer = new XmlSerializer(typeof(List<T>));
             using (FileStream enFilestream = new FileStream(filePath, FileMode.Open))

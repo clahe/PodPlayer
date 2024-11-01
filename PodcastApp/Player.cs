@@ -29,9 +29,9 @@ namespace PodcastApp
             InitializeComponent();
 
             rssTimer = new System.Timers.Timer();
-            rssTimer.Elapsed += KollaEfterSenasteAvsnitt; // Anropa metoden för att kolla nya avsnitt
-            rssTimer.AutoReset = true; // Upprepa timer-intervallen
-            rssTimer.Enabled = false;  // Börja som stoppad
+            rssTimer.Elapsed += KollaEfterSenasteAvsnitt; 
+            rssTimer.AutoReset = true; 
+            rssTimer.Enabled = false; 
 
             comboBoxFilterFrekvens.Items.Add("1 minut");
             comboBoxFilterFrekvens.Items.Add("5 minuter");
@@ -57,7 +57,7 @@ namespace PodcastApp
         {
             poddLista = podcastController.HamtaPodcast();
 
-            listView1.Items.Clear(); // Clear the current items
+            listView1.Items.Clear(); 
             foreach (var podcast in poddLista)
             {
                 var item = new ListViewItem(podcast.Rubrik);
@@ -231,7 +231,7 @@ namespace PodcastApp
         {
             if (listBoxListaAvKategori.SelectedItem is Kategori kategori)
             {
-                // Be om bekräftelse från användaren
+               
                 var result = MessageBox.Show($"Vill du verkligen ta bort kategorin '{kategori.KategoriNamn}'?",
                                               "Bekräfta borttagning",
                                               MessageBoxButtons.YesNo,
@@ -321,7 +321,6 @@ namespace PodcastApp
                     return;
                 }
 
-                // Kontrollera att en ny kategori är vald
                 if (listBoxListaAvKategori.SelectedItem == null)
                 {
                     MessageBox.Show("Välj en ny kategori.", "Fel");
@@ -440,7 +439,7 @@ namespace PodcastApp
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Kontrollera att användaren har valt ett giltigt objekt
+           
             if (comboBoxFilterFrekvens.SelectedItem != null)
             {
                 int selectedFrequency = 0;
@@ -457,26 +456,26 @@ namespace PodcastApp
                         selectedFrequency = 10;
                         break;
                     default:
-                        rssTimer.Stop(); // Stoppa timer om inget giltigt intervall är valt
-                        return; // Avsluta metoden
+                        rssTimer.Stop(); 
+                        return; 
                 }
 
-                // Anropa metoden för att filtrera poddar
+                
                 FiltreraPoddMedFrekvens(selectedFrequency);
 
-                // Starta timern med vald frekvens
+          
                 StartTimer(selectedFrequency);
             }
             else
             {
-                rssTimer.Stop(); // Stoppa timer om inget är valt
+                rssTimer.Stop(); 
             }
         }
 
 
         private void StartTimer(int intervalInMinutes)
         {
-            rssTimer.Interval = intervalInMinutes * 60 * 1000; // Sätt intervallet i millisekunder
+            rssTimer.Interval = intervalInMinutes * 60 * 1000; 
             rssTimer.Start();
         }
 
@@ -484,7 +483,7 @@ namespace PodcastApp
         {
             foreach (var podd in podcastController.HamtaPodcast())
             {
-                DateTime latestEpisodeDate = podcastController.HamtaSenasteAvsnittDatum(podd); // Rätt metod
+                DateTime latestEpisodeDate = podcastController.HamtaSenasteAvsnittDatum(podd); 
 
                 if (latestEpisodeDate > podd.SenasteAvsnittsdatum)
                 {
@@ -501,13 +500,10 @@ namespace PodcastApp
 
         private void FiltreraPoddMedFrekvens(int frekvens)
         {
-            // Filtrera poddar baserat på den valda frekvensen
             var filteredPodcasts = poddLista.Where(p => p.Uppdateringsfrekvens == frekvens).ToList();
 
-            // Rensa befintliga objekt i ListView
             listView1.Items.Clear();
 
-            // Lägg till de filtrerade poddarna i ListView
             foreach (var podcast in filteredPodcasts)
             {
                 var item = new ListViewItem(podcast.Rubrik);
