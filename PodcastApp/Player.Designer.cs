@@ -135,7 +135,7 @@ namespace PodcastApp
             listBoxListaOverAvsnitt.Name = "listBoxListaOverAvsnitt";
             listBoxListaOverAvsnitt.Size = new Size(504, 524);
             listBoxListaOverAvsnitt.TabIndex = 5;
-            listBoxListaOverAvsnitt.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            listBoxListaOverAvsnitt.SelectedIndexChanged += listBoxListaOverAvsnitt_SelectedIndexChanged;
             // 
             // textBoxBeskrivning
             // 
@@ -189,7 +189,7 @@ namespace PodcastApp
             comboBoxFilterKategori.Name = "comboBoxFilterKategori";
             comboBoxFilterKategori.Size = new Size(151, 28);
             comboBoxFilterKategori.TabIndex = 11;
-            comboBoxFilterKategori.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBoxFilterKategori.SelectedIndexChanged += comboBoxFilterKategori_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -207,7 +207,7 @@ namespace PodcastApp
             listBoxListaAvKategori.Name = "listBoxListaAvKategori";
             listBoxListaAvKategori.Size = new Size(196, 124);
             listBoxListaAvKategori.TabIndex = 13;
-            listBoxListaAvKategori.SelectedIndexChanged += listBox2_SelectedIndexChanged;
+            
             // 
             // textBoxNamnRuta
             // 
@@ -263,7 +263,7 @@ namespace PodcastApp
             comboBoxFilterFrekvens.Name = "comboBoxFilterFrekvens";
             comboBoxFilterFrekvens.Size = new Size(151, 28);
             comboBoxFilterFrekvens.TabIndex = 19;
-            comboBoxFilterFrekvens.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            comboBoxFilterFrekvens.SelectedIndexChanged += comboBoxFilterFrekvens_SelectedIndexChanged;
             // 
             // label5
             // 

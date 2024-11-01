@@ -102,11 +102,6 @@ namespace PodcastApp
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private async void button1_ClickAsync(object sender, EventArgs e)
         {
             string rssUrl = textBoxUrl.Text;
@@ -353,7 +348,7 @@ namespace PodcastApp
 
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBoxListaOverAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (listBoxListaOverAvsnitt.SelectedItems.Count > 0 && listView1.SelectedItems.Count > 0)
@@ -407,7 +402,7 @@ namespace PodcastApp
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxFilterKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
 
 
@@ -429,7 +424,6 @@ namespace PodcastApp
                 {
                     var item = new ListViewItem(podcast.Rubrik);
                     item.SubItems.Add(podcast.Kategori);
-                    item.SubItems.Add(podcast.RssUrl);
                     item.SubItems.Add(podcast.Uppdateringsfrekvens.ToString() + " minuter");
                     item.SubItems.Add(podcast.avsnittLista.Count.ToString());
                     listView1.Items.Add(item);
@@ -437,7 +431,7 @@ namespace PodcastApp
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxFilterFrekvens_SelectedIndexChanged(object sender, EventArgs e)
         {
            
             if (comboBoxFilterFrekvens.SelectedItem != null)
@@ -520,6 +514,10 @@ namespace PodcastApp
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
