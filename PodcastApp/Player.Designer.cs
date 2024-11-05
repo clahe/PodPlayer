@@ -57,6 +57,7 @@ namespace PodcastApp
             buttonAndraKategori = new Button();
             comboBoxFilterFrekvens = new ComboBox();
             label5 = new Label();
+            buttonTaBortFlode = new Button();
             SuspendLayout();
             // 
             // listView1
@@ -110,7 +111,7 @@ namespace PodcastApp
             // 
             // buttonLaggTillUrl
             // 
-            buttonLaggTillUrl.Location = new Point(80, 72);
+            buttonLaggTillUrl.Location = new Point(51, 72);
             buttonLaggTillUrl.Name = "buttonLaggTillUrl";
             buttonLaggTillUrl.Size = new Size(94, 29);
             buttonLaggTillUrl.TabIndex = 3;
@@ -120,7 +121,7 @@ namespace PodcastApp
             // 
             // buttonRensaUrlBox
             // 
-            buttonRensaUrlBox.Location = new Point(180, 72);
+            buttonRensaUrlBox.Location = new Point(151, 72);
             buttonRensaUrlBox.Name = "buttonRensaUrlBox";
             buttonRensaUrlBox.Size = new Size(94, 29);
             buttonRensaUrlBox.TabIndex = 4;
@@ -207,7 +208,6 @@ namespace PodcastApp
             listBoxListaAvKategori.Name = "listBoxListaAvKategori";
             listBoxListaAvKategori.Size = new Size(196, 124);
             listBoxListaAvKategori.TabIndex = 13;
-            
             // 
             // textBoxNamnRuta
             // 
@@ -274,11 +274,22 @@ namespace PodcastApp
             label5.TabIndex = 20;
             label5.Text = "Frekvens";
             // 
-            // PodcastApp
+            // buttonTaBortFlode
+            // 
+            buttonTaBortFlode.Location = new Point(251, 72);
+            buttonTaBortFlode.Name = "buttonTaBortFlode";
+            buttonTaBortFlode.Size = new Size(94, 29);
+            buttonTaBortFlode.TabIndex = 21;
+            buttonTaBortFlode.Text = "Ta bort";
+            buttonTaBortFlode.UseVisualStyleBackColor = true;
+            buttonTaBortFlode.Click += buttonTaBortFlode_Click;
+            // 
+            // Player
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1514, 936);
+            Controls.Add(buttonTaBortFlode);
             Controls.Add(label5);
             Controls.Add(comboBoxFilterFrekvens);
             Controls.Add(buttonAndraKategori);
@@ -300,7 +311,7 @@ namespace PodcastApp
             Controls.Add(textBoxUrl);
             Controls.Add(label1);
             Controls.Add(listView1);
-            Name = "PodcastApp";
+            Name = "Player";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PodcastApp";
             Load += Form1_Load;
@@ -335,5 +346,6 @@ namespace PodcastApp
         private ComboBox comboBoxFilterFrekvens;
         private Label label5;
         private ColumnHeader avsnittHeader1;
+        private Button buttonTaBortFlode;
     }
 }

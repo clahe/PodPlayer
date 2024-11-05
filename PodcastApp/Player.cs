@@ -29,9 +29,9 @@ namespace PodcastApp
             InitializeComponent();
 
             rssTimer = new System.Timers.Timer();
-            rssTimer.Elapsed += KollaEfterSenasteAvsnitt; 
-            rssTimer.AutoReset = true; 
-            rssTimer.Enabled = false; 
+            rssTimer.Elapsed += KollaEfterSenasteAvsnitt;
+            rssTimer.AutoReset = true;
+            rssTimer.Enabled = false;
 
             comboBoxFilterFrekvens.Items.Add("1 minut");
             comboBoxFilterFrekvens.Items.Add("5 minuter");
@@ -57,7 +57,7 @@ namespace PodcastApp
         {
             poddLista = podcastController.HamtaPodcast();
 
-            listView1.Items.Clear(); 
+            listView1.Items.Clear();
             foreach (var podcast in poddLista)
             {
                 var item = new ListViewItem(podcast.Rubrik);
@@ -226,7 +226,7 @@ namespace PodcastApp
         {
             if (listBoxListaAvKategori.SelectedItem is Kategori kategori)
             {
-               
+
                 var result = MessageBox.Show($"Vill du verkligen ta bort kategorin '{kategori.KategoriNamn}'?",
                                               "Bekräfta borttagning",
                                               MessageBoxButtons.YesNo,
@@ -433,7 +433,7 @@ namespace PodcastApp
 
         private void comboBoxFilterFrekvens_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             if (comboBoxFilterFrekvens.SelectedItem != null)
             {
                 int selectedFrequency = 0;
@@ -450,26 +450,26 @@ namespace PodcastApp
                         selectedFrequency = 10;
                         break;
                     default:
-                        rssTimer.Stop(); 
-                        return; 
+                        rssTimer.Stop();
+                        return;
                 }
 
-                
+
                 FiltreraPoddMedFrekvens(selectedFrequency);
 
-          
+
                 StartTimer(selectedFrequency);
             }
             else
             {
-                rssTimer.Stop(); 
+                rssTimer.Stop();
             }
         }
 
 
         private void StartTimer(int intervalInMinutes)
         {
-            rssTimer.Interval = intervalInMinutes * 60 * 1000; 
+            rssTimer.Interval = intervalInMinutes * 60 * 1000;
             rssTimer.Start();
         }
 
@@ -477,7 +477,7 @@ namespace PodcastApp
         {
             foreach (var podd in podcastController.HamtaPodcast())
             {
-                DateTime latestEpisodeDate = podcastController.HamtaSenasteAvsnittDatum(podd); 
+                DateTime latestEpisodeDate = podcastController.HamtaSenasteAvsnittDatum(podd);
 
                 if (latestEpisodeDate > podd.SenasteAvsnittsdatum)
                 {
@@ -522,6 +522,51 @@ namespace PodcastApp
 
         }
 
+        private void buttonTaBortFlode_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0) 
+            {
+                var selectedItem = listView1.SelectedItems[0]; 
+                string valtPoddRubrik = selectedItem.Text; 
+
+                var podcast = poddLista.FirstOrDefault(p => p.Rubrik == valtPoddRubrik); 
+
+                if (podcast != null) 
+                {
+                    var result = MessageBox.Show($"Vill du verkligen ta bort podcasten '{podcast.Rubrik}'?",
+                                                  "Bekräfta borttagning",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        podcastController.DeletePodcast(podcast); 
+                        poddLista.Remove(podcast); 
+                        podcastController.SavePodcast(poddLista);
+
+                        listView1.Items.Clear(); 
+                        foreach (var pod in poddLista)
+                        {
+                            var item = new ListViewItem(pod.Rubrik);
+                            item.SubItems.Add(pod.Kategori);
+                            item.SubItems.Add(pod.Uppdateringsfrekvens + " minuter");
+                            item.SubItems.Add(pod.avsnittLista.Count.ToString());
+                            listView1.Items.Add(item); 
+                        }
+
+                        MessageBox.Show("Podcasten har tagits bort.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Den valda podcasten kunde inte hittas.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Välj en podcast att ta bort."); 
+            }
+        }
 
     }
 }
