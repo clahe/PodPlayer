@@ -251,6 +251,13 @@ namespace PodcastApp
                         listBoxListaAvKategori.Items.Add(kat);
                     }
 
+                    comboBoxFilterKategori.Items.Clear();
+                    foreach (var kat in kategoriLista)
+                    {
+                        comboBoxFilterKategori.Items.Add(kat);
+                    }
+
+
                     MessageBox.Show("Kategorin har tagits bort.");
                 }
             }
