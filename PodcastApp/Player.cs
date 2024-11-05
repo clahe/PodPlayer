@@ -226,37 +226,48 @@ namespace PodcastApp
         {
             if (listBoxListaAvKategori.SelectedItem is Kategori kategori)
             {
-
                 var result = MessageBox.Show($"Vill du verkligen ta bort kategorin '{kategori.KategoriNamn}'?",
                                               "Bekräfta borttagning",
                                               MessageBoxButtons.YesNo,
                                               MessageBoxIcon.Question);
 
-
                 if (result == DialogResult.Yes)
                 {
-
+                   
                     kategoriController.Delete(kategori);
-
-
                     kategoriLista.Remove(kategori);
-
-
                     kategoriController.SaveListKategori(kategoriLista);
 
+                    
+                    foreach (var podcast in poddLista)
+                    {
+                        if (podcast.Kategori == kategori.KategoriNamn)
+                        {
 
+
+                            podcast.Kategori = string.Empty; 
+                        }
+                    }
+
+                   
+                    podcastController.SavePodcast(poddLista);
+
+                  
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        
+                        if (item.SubItems[1].Text == kategori.KategoriNamn)
+                        {
+                            item.SubItems[1].Text = string.Empty; 
+                        }
+                    }
+
+                    
                     listBoxListaAvKategori.Items.Clear();
                     foreach (var kat in kategoriLista)
                     {
                         listBoxListaAvKategori.Items.Add(kat);
                     }
-
-                    comboBoxFilterKategori.Items.Clear();
-                    foreach (var kat in kategoriLista)
-                    {
-                        comboBoxFilterKategori.Items.Add(kat);
-                    }
-
 
                     MessageBox.Show("Kategorin har tagits bort.");
                 }
@@ -266,6 +277,9 @@ namespace PodcastApp
                 MessageBox.Show("Välj en kategori att ta bort.");
             }
         }
+
+
+
 
 
         private void button5_Click(object sender, EventArgs e)
